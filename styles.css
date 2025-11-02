@@ -1,0 +1,466 @@
+/* RESET BÁSICO */
+* {
+    box-sizing: border-box; /* Asegura que padding y border no aumenten el ancho total */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+/* 1. ESTRUCTURA PRINCIPAL (HEADER Y NAVEGACIÓN) */
+.main-header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex; /* Usamos Flexbox para alinear logo y menú */
+    justify-content: space-between; /* Espacia el logo y el nav */
+    align-items: center;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex; /* Flexbox para los elementos del menú */
+}
+
+.main-nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+/* 2. CONTENIDO PRINCIPAL Y BARRA LATERAL (GRID) */
+.main-container {
+    display: grid;
+    /* Por defecto, en pantallas grandes: 1 columna de barra lateral, 3 columnas de contenido */
+    grid-template-columns: 1fr 3fr; 
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px; /* Limita el ancho en computadoras */
+    margin: 0 auto;
+}
+
+.sidebar {
+    background-color: #eee;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.main-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* 3. PIE DE PÁGINA */
+.main-footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+/* Reglas para Tabletas (max-width: 768px) */
+@media (max-width: 768px) {
+    
+    /* El contenedor principal cambia a una sola columna */
+    .main-container {
+        grid-template-columns: 1fr; /* Una sola columna */
+    }
+
+    /* Opcional: Centrar el logo en dispositivos pequeños */
+    .logo {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+}
+
+/* Reglas para Celulares (max-width: 600px) */
+@media (max-width: 600px) {
+
+    /* El encabezado pasa de 'justify-content: space-between' a apilar los elementos */
+    .main-header {
+        flex-direction: column; 
+    }
+
+    /* La navegación cambia a ser vertical */
+    .main-nav ul {
+        flex-direction: column;
+        width: 100%; /* Ocupa todo el ancho */
+    }
+
+    .main-nav ul li {
+        text-align: center;
+        border-top: 1px solid #444; /* Separador entre enlaces */
+    }
+    
+    .main-nav ul li:first-child {
+        border-top: none; 
+    }
+}
+
+/* ESTILOS PARA LA GALERÍA/CARRUSEL */
+
+.gallery {
+    margin-bottom: 30px;
+    /* Esto es solo para el ejemplo, debes diseñar el carrusel con JS */
+    overflow-x: auto; 
+    white-space: nowrap; /* Mantiene las figuras en una sola línea */
+    padding: 10px 0;
+    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
+}
+
+/* El carrusel necesita un ancho definido para que el scroll funcione */
+.carousel {
+    display: flex;
+    /* Ajusta el ancho total del carrusel para que se pueda desplazar horizontalmente */
+    width: max-content; 
+}
+
+.carousel figure {
+    flex: 0 0 auto; /* No permite que las figuras se encojan o crezcan */
+    width: 300px; /* Ancho base para cada imagen en el carrusel */
+    margin-right: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.carousel img {
+    width: 100%; /* La imagen siempre ocupa el 100% del ancho de su <figure> */
+    height: auto;
+    display: block;
+}
+
+/* RESPONSIVIDAD ESPECÍFICA PARA EL CARRUSEL */
+
+/* En dispositivos más pequeños, haz que la imagen ocupe casi todo el ancho disponible */
+@media (max-width: 768px) {
+    .carousel figure {
+        /* Ocupa el 90% del ancho de la pantalla para dejar espacio para ver que hay más */
+        width: 90vw; 
+    }
+}
+
+/* ESTILOS PARA LA CUADRÍCULA DE PRODUCTOS */
+.product-grid {
+    padding: 20px 0;
+    display: grid;
+    /* grid-template-columns crea las columnas */
+    /* Por defecto, en escritorio, 4 columnas de igual tamaño */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; /* Espacio entre las tarjetas */
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.product-card h3 {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+.product-card .price {
+    color: #b12704;
+    font-weight: bold;
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.add-to-cart {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    width: 100%; /* Hace que el botón ocupe todo el ancho */
+}
+
+.add-to-cart:hover {
+    background-color: #0056b3;
+}
+
+
+/* MEDIA QUERIES PARA LA CUADRÍCULA DE PRODUCTOS */
+
+/* 1. Para Tabletas (601px a 992px) - 3 columnas */
+@media (max-width: 992px) {
+    .product-grid {
+        /* Cambiamos de 4 a 3 columnas */
+        grid-template-columns: repeat(3, 1fr); 
+    }
+}
+
+/* 2. Para Tabletas (481px a 600px) - 2 columnas */
+@media (max-width: 600px) {
+    .product-grid {
+        /* Cambiamos a 2 columnas */
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+/* 3. Para Celulares (0px a 480px) - 1 columna */
+@media (max-width: 480px) {
+    .product-grid {
+        /* Cambiamos a 1 columna (una tarjeta por fila) */
+        grid-template-columns: 1fr; 
+    }
+}
+
+/* --------------------------- */
+/* CSS BASE Y FORMULARIO (styles.css) */
+/* --------------------------- */
+
+/* Reseteo y Base */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f9;
+	display: flex; /* Centra todo el contenido vertical y horizontalmente */
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
+	padding: 20px;
+}
+
+/* Contenedor principal del formulario */
+.container {
+	width: 100%;
+	max-width: 400px; /* Límite para pantallas de escritorio */
+}
+
+/* Tarjeta del Formulario */
+.form-card {
+	background-color: white;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+.user-icon {
+	font-size: 3em;
+	margin-bottom: 10px;
+	color: #007bff;
+}
+
+.form-card h2 {
+	margin-bottom: 25px;
+	color: #333;
+}
+
+/* Grupos de entrada */
+.input-group {
+	text-align: left;
+	margin-bottom: 15px;
+}
+
+.input-group label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+	color: #555;
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 16px;
+	transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+	border-color: #007bff;
+	outline: none;
+}
+
+/* Botón de Registro */
+.button.register-button {
+	display: block;
+	width: 100%;
+	padding: 12px;
+	margin-top: 20px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 18px;
+	cursor: pointer;
+	text-decoration: none; /* Si usas <button> esto no es necesario, pero lo dejo por si regresas a <a> */
+	transition: background-color 0.3s;
+}
+
+.button.register-button:hover {
+	background-color: #0056b3;
+}
+
+/* Sección de inicio de sesión */
+.login-section {
+	margin-top: 25px;
+	padding-top: 15px;
+	border-top: 1px solid #eee;
+}
+
+.login-section p {
+	margin-bottom: 10px;
+	color: #777;
+}
+
+.login-section a.login {
+	color: #007bff;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.login-section a.login:hover {
+	text-decoration: underline;
+}
+
+/* RESPONSIVIDAD PARA CELULARES */
+/* Con max-width: 400px en el .container, el formulario ya es responsivo.
+   Esta media query es un ejemplo si quisieras un cambio adicional. */
+@media (max-width: 480px) {
+	.form-card {
+		padding: 20px; /* Reduce un poco el padding en móviles */
+	}
+}
+
+/* --- ESTILOS ADICIONALES PARA LOGIN --- */
+
+/* Estilos para el enlace de "Olvidaste la Contraseña" */
+.forgot-password {
+    text-align: right; /* Alinea el enlace a la derecha */
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+.forgot-link {
+    color: #6c757d; /* Color gris suave */
+    text-decoration: none;
+}
+
+.forgot-link:hover {
+    color: #007bff; /* Cambia a color primario al pasar el ratón */
+    text-decoration: underline;
+}
+
+/* Reajuste del botón para que no use la clase 'register-button' */
+/* Aunque podrías usar la misma, es mejor crear una clase específica */
+.button.login-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff; /* Mantenemos el azul primario */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button.login-button:hover {
+    background-color: #0056b3;
+}
+
+/* Asegurando que la sección de crear cuenta se vea bien */
+.signup-section { /* Renombré login-section del HTML a signup-section en la versión corregida */
+	margin-top: 25px;
+	padding-top: 15px;
+	border-top: 1px solid #eee;
+}
+
+.signup-section p {
+	margin-bottom: 10px;
+	color: #777;
+}
+
+.signup-section a.signup-link {
+	color: #007bff;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.signup-section a.signup-link:hover {
+	text-decoration: underline;
+}
+/* --------------------------- */
+/* CSS para el Modal (Ventana Emergente) - BASE RESPONSIVA */
+/* --------------------------- */
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite scroll si el contenido es muy largo */
+    background-color: rgba(0,0,0,0.6);
+    padding: 10px; /* Padding para que no se pegue a los bordes en móviles */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* Centrado vertical y horizontal */
+    padding: 25px;
+    border: 1px solid #888;
+    width: 95%; /* Ocupa el 95% del ancho en móviles */
+    max-width: 600px; /* Límite de ancho en escritorio */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative; 
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    position: absolute; /* Posiciona la X en la esquina superior */
+    top: 10px;
+    right: 20px;
+}
+
+.close-btn:hover, .close-btn:focus {
+    color: #000;
+}
+
+/* Responsividad para móviles: Asegura que el margen no empuje demasiado */
+@media (max-width: 600px) {
+    .modal-content {
+        margin: 20px auto; /* Más margen arriba en móviles para mejor visualización */
+        padding: 15px;
+    }
+}

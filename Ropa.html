@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Artículos - Nombre de tu tienda</title>
+    <link rel="stylesheet" href="tienda-style.css"> 
+    <link rel="stylesheet" href="stylescf.css"> 
+</head>
+<body>
+
+    <header class="main-header">
+    <div class="logo">
+        <h1>Nombre de tu tienda</h1>
+    </div>
+    
+    <nav class="main-nav">
+        <ul>
+            <li><a href="TiendaOnline.html">Inicio</a></li>
+            <li><a id="openCatalogoModal" class="modal-link">Catálogo</a></li> 
+            <li><a id="openContactoModal" class="modal-link">Contacto</a></li>
+            <li><a id="openCarritoModal" class="modal-link">🛒 Carrito (0)</a></li>
+            
+            <li><a id="logoutLink" class="logout-link">🔒 Cerrar Sesión</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+    <div class="main-container">
+
+        
+        <aside class="sidebar">
+            <h2>Categorías</h2>
+            <ul>
+                <li><a href="Electronica.html">Electrónica</a></li>
+                <li><a href="Ropa.html">Ropa</a></li>
+                <li><a href="VideoJuegos.html">Videojuegos</a></li>
+                <li><a href="Hogar.html">Hogar</a></li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            
+            <section class="gallery"> 
+                <h2>Productos Destacados</h2>
+                <div class="carousel">
+                    <figure><img src="images/Apple Watch Ultra 2.jpg" alt="Slider Imagen 1"></figure>
+                    <figure><img src="images/Apple Watch Ultra 2.jpg" alt="Slider Imagen 1"></figure>
+                    <figure><img src="images/Apple Watch Ultra 2.jpg" alt="Slider Imagen 1"></figure>
+                    <figure><img src="images/Apple Watch Ultra 2.jpg" alt="Slider Imagen 1"></figure>
+                </div>
+            </section>
+            
+            <section class="product-grid">
+                <h2>Ofertas de la Semana</h2>
+                
+                <article class="product-card">
+                    <img src="images/Apple Watch Ultra 2.jpg" alt="Auriculares Inalámbricos">
+                    <h3>Auriculares Inalámbricos Pro</h3>
+                    <p class="description">Sonido de alta fidelidad y cancelación de ruido.</p>
+                    <p class="price">$79.99</p>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </article>
+                
+                <article class="product-card">
+                    <img src="images/Apple Watch Ultra 2.jpg" alt="Reloj Inteligente">
+                    <h3>Smartwatch Deportivo X1</h3>
+                    <p class="description">Monitor de ritmo cardíaco y GPS integrado.</p>
+                    <p class="price">$120.00</p>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </article>
+                
+                <article class="product-card">
+                    <img src="images/Apple Watch Ultra 2.jpg" alt="Cámara Web 4K">
+                    <h3>Cámara Web 4K Ultra HD</h3>
+                    <p class="description">Perfecta para streaming y videollamadas.</p>
+                    <p class="price">$45.50</p>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </article>
+                
+                <article class="product-card">
+                    <img src="images/Apple Watch Ultra 2.jpg" alt="Mouse Ergonómico">
+                    <h3>Mouse Ergonómico Vertical</h3>
+                    <p class="description">Diseño cómodo para largas jornadas de trabajo.</p>
+                    <p class="price">$32.99</p>
+                    <button class="add-to-cart">Añadir al Carrito</button>
+                </article>
+                
+            </section>
+            
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Nombre de tu tienda. Todos los derechos reservados.</p>
+        <div class="social-links">
+            <a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">Instagram</a>
+        </div>
+    </footer>
+    
+    
+    <div id="catalogoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn catalogo-close">&times;</span>
+        <h2>📚 Explorar Catálogo</h2>
+        <p>Selecciona una categoría o busca tu producto:</p>
+
+        <form class="modal-search-form" action="catalogo-completo.html" method="GET">
+            <input type="search" name="q" placeholder="Buscar en categorías o productos..." required>
+            <button type="submit">Buscar</button>
+        </form>
+        
+        <div class="catalogo-grid">
+            
+            <a href="#" class="category-item">
+                <span class="category-icon">💻</span>
+                <h3>Electrónica</h3>
+                <p>Computadoras, móviles y gadgets.</p>
+            </a>
+            
+            <a href="#" class="category-item">
+                <span class="category-icon">👕</span>
+                <h3>Ropa y Moda</h3>
+                <p>La última tendencia en vestimenta.</p>
+            </a>
+            
+            <a href="games.html" class="category-item">
+                <span class="category-icon">🎮</span>
+                <h3>Videojuegos</h3>
+                <p>Consolas, juegos y accesorios.</p>
+            </a>
+            
+            <a href="#" class="category-item">
+                <span class="category-icon">🏠</span>
+                <h3>Hogar</h3>
+                <p>Artículos para el hogar y la cocina.</p>
+            </a>
+
+            <a href="catalogo-completo.html" class="category-item view-all-btn" id="viewAllCatalogo">
+                <span class="category-icon">📦</span>
+                <h3>Ver Todo</h3>
+                <p>Explorar todos los productos.</p>
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+
+    <div id="contactoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn contacto-close">&times;</span>
+        <h2>📞 Contáctanos</h2>
+        <p>Estamos aquí para ayudarte. Por favor, rellena el siguiente formulario o utiliza nuestras opciones directas.</p>
+
+        <form class="contact-form">
+            <div class="input-group">
+                <label for="contact-name">Tu Nombre Completo</label>
+                <input type="text" id="contact-name" name="name" required placeholder="Ej: Juan Pérez">
+            </div>
+
+            <div class="input-group">
+                <label for="contact-email">Correo Electrónico</label>
+                <input type="email" id="contact-email" name="email" required placeholder="ejemplo@dominio.com">
+            </div>
+            
+            <div class="input-group">
+                <label for="contact-subject">Asunto</label>
+                <select id="contact-subject" name="subject" required>
+                    <option value="" disabled selected>Selecciona un asunto...</option>
+                    <option value="consulta">Consulta General</option>
+                    <option value="pedido">Pregunta sobre un Pedido</option>
+                    <option value="devolucion">Devoluciones y Garantía</option>
+                    <option value="tecnico">Soporte Técnico</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="contact-message">Tu Mensaje</label>
+                <textarea id="contact-message" name="message" rows="5" required placeholder="Describe tu consulta detalladamente aquí..."></textarea>
+            </div>
+            
+            <button type="submit" class="button contact-submit-button">Enviar Mensaje</button>
+        </form>
+        
+        <div class="direct-contact-options">
+            <h3>Otras Formas de Contacto</h3>
+            <p><strong>Teléfono:</strong> <a href="tel:+123456789">+1 (234) 567-890</a> (Lun-Vie 9am - 5pm)</p>
+            <p><strong>Email Directo:</strong> <a href="mailto:soporte@tutienda.com">soporte@tutienda.com</a></p>
+        </div>
+    </div>
+</div>
+
+    <div id="carritoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn carrito-close">&times;</span>
+        <h2>🛒 Tu Carrito de Compras (0 artículos)</h2> 
+        
+        <div id="carrito-body">
+            </div>
+
+        <button class="button register-button checkout-button" style="margin-top: 20px;">Finalizar Compra</button>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>

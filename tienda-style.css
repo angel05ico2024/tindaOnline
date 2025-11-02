@@ -1,0 +1,725 @@
+/* RESET BÁSICO */
+* {
+    box-sizing: border-box; /* Asegura que padding y border no aumenten el ancho total */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+/* 1. ESTRUCTURA PRINCIPAL (HEADER Y NAVEGACIÓN) */
+.main-header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex; /* Usamos Flexbox para alinear logo y menú */
+    justify-content: space-between; /* Espacia el logo y el nav */
+    align-items: center;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex; /* Flexbox para los elementos del menú */
+}
+
+.main-nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+/* 2. CONTENIDO PRINCIPAL Y BARRA LATERAL (GRID) */
+.main-container {
+    display: grid;
+    /* Por defecto, en pantallas grandes: 1 columna de barra lateral, 3 columnas de contenido */
+    grid-template-columns: 1fr 3fr; 
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px; /* Limita el ancho en computadoras */
+    margin: 0 auto;
+}
+
+.sidebar {
+    background-color: #eee;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.main-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* 3. PIE DE PÁGINA */
+.main-footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+/* Reglas para Tabletas (max-width: 768px) */
+@media (max-width: 768px) {
+    
+    /* El contenedor principal cambia a una sola columna */
+    .main-container {
+        grid-template-columns: 1fr; /* Una sola columna */
+    }
+
+    /* Opcional: Centrar el logo en dispositivos pequeños */
+    .logo {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+}
+
+/* Reglas para Celulares (max-width: 600px) */
+@media (max-width: 600px) {
+
+    /* El encabezado pasa de 'justify-content: space-between' a apilar los elementos */
+    .main-header {
+        flex-direction: column; 
+    }
+
+    /* La navegación cambia a ser vertical */
+    .main-nav ul {
+        flex-direction: column;
+        width: 100%; /* Ocupa todo el ancho */
+    }
+
+    .main-nav ul li {
+        text-align: center;
+        border-top: 1px solid #444; /* Separador entre enlaces */
+    }
+    
+    .main-nav ul li:first-child {
+        border-top: none; 
+    }
+}
+
+/* ESTILOS PARA LA GALERÍA/CARRUSEL */
+
+.gallery {
+    margin-bottom: 30px;
+    /* Esto es solo para el ejemplo, debes diseñar el carrusel con JS */
+    overflow-x: auto; 
+    white-space: nowrap; /* Mantiene las figuras en una sola línea */
+    padding: 10px 0;
+    -webkit-overflow-scrolling: touch; /* Suaviza el scroll en iOS */
+}
+
+/* El carrusel necesita un ancho definido para que el scroll funcione */
+.carousel {
+    display: flex;
+    /* Ajusta el ancho total del carrusel para que se pueda desplazar horizontalmente */
+    width: max-content; 
+}
+
+.carousel figure {
+    flex: 0 0 auto; /* No permite que las figuras se encojan o crezcan */
+    width: 300px; /* Ancho base para cada imagen en el carrusel */
+    margin-right: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.carousel img {
+    width: 100%; /* La imagen siempre ocupa el 100% del ancho de su <figure> */
+    height: auto;
+    display: block;
+}
+
+/* RESPONSIVIDAD ESPECÍFICA PARA EL CARRUSEL */
+
+/* En dispositivos más pequeños, haz que la imagen ocupe casi todo el ancho disponible */
+@media (max-width: 768px) {
+    .carousel figure {
+        /* Ocupa el 90% del ancho de la pantalla para dejar espacio para ver que hay más */
+        width: 90vw; 
+    }
+}
+
+/* ESTILOS PARA LA CUADRÍCULA DE PRODUCTOS */
+.product-grid {
+    padding: 20px 0;
+    display: grid;
+    /* grid-template-columns crea las columnas */
+    /* Por defecto, en escritorio, 4 columnas de igual tamaño */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; /* Espacio entre las tarjetas */
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.product-card h3 {
+    margin: 5px 0;
+    font-size: 1.1em;
+}
+
+.product-card .price {
+    color: #b12704;
+    font-weight: bold;
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.add-to-cart {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    width: 100%; /* Hace que el botón ocupe todo el ancho */
+}
+
+.add-to-cart:hover {
+    background-color: #0056b3;
+}
+
+
+/* MEDIA QUERIES PARA LA CUADRÍCULA DE PRODUCTOS */
+
+/* 1. Para Tabletas (601px a 992px) - 3 columnas */
+@media (max-width: 992px) {
+    .product-grid {
+        /* Cambiamos de 4 a 3 columnas */
+        grid-template-columns: repeat(3, 1fr); 
+    }
+}
+
+/* 2. Para Tabletas (481px a 600px) - 2 columnas */
+@media (max-width: 600px) {
+    .product-grid {
+        /* Cambiamos a 2 columnas */
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+/* 3. Para Celulares (0px a 480px) - 1 columna */
+@media (max-width: 480px) {
+    .product-grid {
+        /* Cambiamos a 1 columna (una tarjeta por fila) */
+        grid-template-columns: 1fr; 
+    }
+}
+/* --------------------------- */
+/* CSS para el Modal (Ventana Emergente) - BASE RESPONSIVA */
+/* --------------------------- */
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000; /* Asegura que esté por encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite scroll si el contenido es muy largo */
+    background-color: rgba(0,0,0,0.6);
+    padding: 10px; /* Padding para que no se pegue a los bordes en móviles */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* Centrado vertical y horizontal */
+    padding: 25px;
+    border: 1px solid #888;
+    width: 95%; /* Ocupa el 95% del ancho en móviles */
+    max-width: 600px; /* Límite de ancho en escritorio */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative; 
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    position: absolute; /* Posiciona la X en la esquina superior */
+    top: 10px;
+    right: 20px;
+}
+
+.close-btn:hover, .close-btn:focus {
+    color: #000;
+}
+
+/* Responsividad para móviles: Asegura que el margen no empuje demasiado */
+@media (max-width: 600px) {
+    .modal-content {
+        margin: 20px auto; /* Más margen arriba en móviles para mejor visualización */
+        padding: 15px;
+    }
+}
+/* --- ESTILOS MEJORADOS PARA EL CONTENIDO DEL CARRITO (Estilo Tarjeta) --- */
+
+#carrito-body h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-list {
+    /* No necesitamos estilos de lista aquí, ya que los ítems serán tarjetas */
+    padding: 0;
+    margin: 15px 0;
+}
+
+.cart-item {
+    display: flex; 
+    align-items: center;
+    gap: 15px; /* Espacio entre imagen y detalles */
+    
+    /* Estilo de la "Tarjeta" */
+    background-color: #fcfcfc;
+    padding: 15px;
+    margin-bottom: 12px; /* Espacio entre cada tarjeta */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s;
+}
+
+.cart-item:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave al pasar el ratón */
+}
+
+.cart-img {
+    width: 70px; /* Tamaño de imagen ligeramente más grande */
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    flex-shrink: 0; /* Evita que la imagen se encoja */
+}
+
+.item-details {
+    flex-grow: 1; 
+    text-align: left;
+}
+
+.item-details h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.1em;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.item-details p {
+    margin: 0;
+    font-size: 0.95em;
+    color: #555;
+}
+
+/* --- ESTILOS DEL RESUMEN Y BOTÓN DE PAGO --- */
+
+.cart-summary {
+    text-align: right;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #e9f5ff; /* Fondo claro para destacar el total */
+    border-radius: 8px;
+    border-top: 1px solid #cce5ff;
+}
+
+.cart-summary h4 {
+    font-size: 1.5em;
+    color: #007bff; /* Color primario para el total */
+    margin: 0;
+}
+
+.button.checkout-button {
+    background-color: #28a745; /* Verde para la acción de pago */
+    font-size: 1.2em;
+}
+
+.button.checkout-button:hover {
+    background-color: #218838;
+}
+
+/* Responsividad para Carrito en Móviles */
+@media (max-width: 480px) {
+    .cart-item {
+        padding: 10px;
+        flex-wrap: wrap; /* Permite que los detalles salten debajo de la imagen */
+        text-align: center;
+    }
+    
+    .cart-img {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 10px auto; /* Centra la imagen y añade margen abajo */
+    }
+    
+    .item-details {
+        width: 100%; /* Ocupa todo el ancho */
+        text-align: center;
+    }
+}
+/* --- 1. CONTENEDOR Y TÍTULO DEL SIDEBAR --- */
+
+.sidebar {
+    background-color: white; /* Cambiar a blanco para un look limpio */
+    padding: 20px;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+}
+
+.sidebar h2 {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #007bff; /* Línea separadora de color primario */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+/* --- 2. LISTA Y ENLACES DE CATEGORÍAS --- */
+
+.sidebar ul {
+    list-style: none; 
+    padding: 0;
+}
+
+.sidebar ul li a {
+    display: flex; /* Usamos Flexbox para alinear el texto y el posible icono */
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 20px; 
+    margin-bottom: 2px;
+    border-left: 5px solid transparent; /* Inicialmente transparente para el efecto */
+    transition: background-color 0.3s, border-left-color 0.3s, color 0.3s;
+    font-size: 1em;
+}
+
+.sidebar ul li a:hover {
+    background-color: #f7f7f7; /* Fondo gris claro al pasar el ratón */
+    color: #007bff;
+    border-left-color: #007bff; /* La línea azul aparece a la izquierda */
+}
+
+/* Opcional: Añadir íconos (usa Unicode o una librería como Font Awesome) */
+.sidebar ul li a::before {
+    content: ''; /* Aquí iría un ícono, por ahora vacío o un carácter Unicode */
+    margin-right: 10px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Ejemplo de íconos usando Unicode (no todos los navegadores los soportan bien): */
+.sidebar ul li:nth-child(1) a::before { content: '💻'; } /* Electrónica */
+.sidebar ul li:nth-child(2) a::before { content: '👕'; } /* Ropa */
+.sidebar ul li:nth-child(3) a::before { content: '🎮'; } /* Videojuegos */
+.sidebar ul li:nth-child(4) a::before { content: '🏠'; } /* Hogar */
+
+
+/* --- 3. RESPONSIVIDAD (Media Query para Sidebar en Móviles) --- */
+
+@media (max-width: 768px) {
+    
+    .sidebar {
+        padding: 10px 0; /* Reducimos el padding general */
+        margin-bottom: 20px;
+    }
+
+    .sidebar h2 {
+        display: none; /* Ocultamos el título de Categorías para ahorrar espacio */
+    }
+
+    .sidebar ul {
+        display: flex; /* Hacemos la lista horizontal */
+        overflow-x: auto; /* Permite el scroll horizontal si hay muchas categorías */
+        padding: 5px 10px; 
+        -webkit-overflow-scrolling: touch; /* Mejora el scroll táctil en iOS */
+        white-space: nowrap; /* Mantiene los ítems en una sola línea */
+    }
+    
+    .sidebar ul li {
+        flex-shrink: 0; /* Evita que los ítems se encojan */
+        margin: 0 5px; /* Espacio entre los ítems */
+    }
+    
+    .sidebar ul li a {
+        display: inline-block; /* Se ajusta mejor al contenido */
+        padding: 5px 10px;
+        border-radius: 20px; /* Estilo de botón/píldora */
+        border: 1px solid #ddd;
+        background-color: #fff;
+        font-size: 0.9em;
+    }
+    
+    .sidebar ul li a:hover {
+        background-color: #007bff; 
+        color: white;
+        border-color: #007bff;
+        border-left-color: #007bff; /* Mantener la línea para la consistencia */
+    }
+
+    /* Ocultamos los íconos en el modo de píldora para que sea más compacto */
+    .sidebar ul li a::before {
+        content: none;
+    }
+}
+/* --- ESTILOS PARA LA BARRA DE BÚSQUEDA DENTRO DEL MODAL --- */
+
+.modal-search-form {
+    display: flex;
+    width: 100%;
+    margin: 15px 0 25px 0; /* Margen para separarlo del título y la cuadrícula */
+}
+
+.modal-search-form input[type="search"] {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-right: none; /* Quitamos el borde derecho para que se una al botón */
+    border-radius: 6px 0 0 6px; 
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.modal-search-form input[type="search"]:focus {
+    border-color: #007bff;
+}
+
+.modal-search-form button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s;
+}
+
+.modal-search-form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* RESPONSIVIDAD (Asegura que se mantenga bien en móviles) */
+@media (max-width: 480px) {
+    .modal-search-form {
+        flex-direction: column; /* Apila el input y el botón en móviles */
+    }
+
+    .modal-search-form input[type="search"] {
+        border-right: 2px solid #ddd; /* Restaura el borde derecho */
+        border-radius: 6px;
+        margin-bottom: 10px; /* Espacio entre el input y el botón */
+    }
+
+    .modal-search-form button[type="submit"] {
+        border-radius: 6px;
+        width: 100%; /* El botón ocupa todo el ancho */
+    }
+}
+/* --- 1. AJUSTES A LA TARJETA BASE (.category-item) --- */
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    padding: 20px 15px; /* Un poco más de padding interno */
+    
+    /* Fondo más limpio y borde más sutil */
+    background-color: #ffffff; 
+    border: 1px solid #e0e0e0;
+    border-radius: 12px; /* Bordes más redondeados */
+    
+    color: #333; /* Color de texto principal */
+    
+    /* Sombras sutiles y transición para el efecto hover */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.category-item:hover {
+    transform: translateY(-5px); /* Efecto de elevación más notable */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra más fuerte al pasar el ratón */
+    border-color: #ff9800; /* Color de acento/naranja al pasar el ratón */
+}
+
+.category-icon {
+    font-size: 3em; /* Icono más grande */
+    margin-bottom: 10px;
+}
+/* --- 2. TIPOGRAFÍA Y COLORES DENTRO DE LA TARJETA --- */
+
+.category-item h3 {
+    margin: 5px 0 5px 0;
+    font-size: 1.2em; /* Título un poco más grande y claro */
+    color: #1a1a1a;
+    font-weight: 600; /* Semi-negrita */
+}
+
+.category-item p {
+    font-size: 0.9em;
+    color: #666; /* Descripción en color gris oscuro */
+    margin-top: 5px;
+}
+
+/* Efecto Hover en los textos */
+.category-item:hover h3 {
+    color: #007bff; /* Título principal se vuelve azul al pasar el ratón */
+}
+
+.category-item:hover p {
+    color: #333; /* Descripción se oscurece al pasar el ratón */
+}
+/* --- 3. ESTILO DEL BOTÓN "VER TODO" (OPCIÓN PRINCIPAL) --- */
+
+.view-all-btn {
+    /* Mantenemos el fondo para que destaque, pero con el color primario */
+    background-color: #007bff; 
+    border: none;
+    color: white; 
+    padding: 15px; /* Más padding para que parezca un botón */
+}
+
+.view-all-btn .category-icon, 
+.view-all-btn h3, 
+.view-all-btn p {
+    color: white !important; /* Asegura que todos los elementos de texto sean blancos */
+}
+
+.view-all-btn:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+    transform: translateY(-3px); /* Pequeño efecto de elevación */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+/* --- ESTILOS PARA EL MODAL DE CONTACTO --- */
+
+.contact-form {
+    padding-top: 10px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+/* Estilo para los campos de entrada y el select/textarea */
+.contact-form .input-group input,
+.contact-form .input-group select,
+.contact-form .input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* Asegura que el padding no desborde el ancho */
+    margin-top: 5px;
+    resize: vertical; /* Permite redimensionar solo verticalmente (para textarea) */
+}
+
+.contact-form .input-group input:focus,
+.contact-form .input-group select:focus,
+.contact-form .input-group textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+
+/* Estilo para el botón de envío del formulario de contacto */
+.button.contact-submit-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #28a745; /* Color verde para la acción de "Enviar" */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.button.contact-submit-button:hover {
+    background-color: #218838;
+}
+
+
+/* --- ESTILOS PARA OPCIONES DIRECTAS --- */
+
+.direct-contact-options {
+    text-align: left;
+}
+
+.direct-contact-options h3 {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.direct-contact-options p {
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.direct-contact-options a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.direct-contact-options a:hover {
+    text-decoration: underline;
+}
+/* --- ESTILOS PARA CERRAR SESIÓN EN EL NAV --- */
+
+.logout-link {
+    /* Hereda estilos base del nav */
+    color: #ffc107 !important; /* Color amarillo/advertencia */
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.logout-link:hover {
+    color: #dc3545 !important; /* Rojo al pasar el ratón */
+    background-color: transparent !important;
+}
+
+/* Responsividad: Asegurar que se vea bien en móvil */
+@media (max-width: 600px) {
+    /* Si estás usando la navegación apilada verticalmente: */
+    .main-nav ul li a.logout-link {
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 12px 15px;
+        text-align: center;
+        width: 100%;
+    }
+}
